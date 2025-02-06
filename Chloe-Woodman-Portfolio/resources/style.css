@@ -1,0 +1,531 @@
+/* Basic reset and body styling */
+body,
+html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+/* Circular menu button styling */
+#menu-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 50px; /* Adjust size as needed */
+    height: 50px; /* Adjust size as needed */
+    border-radius: 50%; /* Circular shape */
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Optional shadow for better visibility */
+    z-index: 2000; /* Ensure it's on top of other content */
+}
+
+#menu-button img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image fills the circle */
+}
+
+/* Canvas settings */
+#bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+/* Restrict overlay to background GIF only */
+#bg-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.7);
+    z-index: -2;
+}
+
+#cursor {
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid white;
+    /* Outer circle white border */
+}
+
+#cursor #inner {
+    position: absolute;
+    /* Make it fill the entire cursor */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    /* Start with transparent inner circle */
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+    /* Smooth transition for color change */
+}
+
+/* Button container */
+.button-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    gap: 20px;
+}
+
+@font-face {
+    font-family: 'Teko Light';
+    src: url('./font/Teko-VariableFont_wght.ttf');
+}
+
+@font-face {
+    font-family: 'Space Mono';
+    src: url('./font/SpaceMono-Regular.ttf');
+}
+
+/* Text styling */
+#intro {
+    font-family: "Teko Light";
+    color: #808080;
+    text-align: center;
+    font-size: 5vw;
+    position: absolute;
+    top: 35%;
+    width: 100%;
+    z-index: 300;
+}
+
+#intro2 {
+    font-family: "Teko Light";
+    color: #808080;
+    text-align: center;
+    font-size: 5vw;
+    position: absolute;
+    top: 5vw;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    z-index: 300;
+    margin-bottom: 30px;
+}
+
+#bio {
+    font-family: "Teko Light";
+    color: #808080;
+    text-align: center;
+    position: absolute;
+    font-size: 3vw;
+    top: 45%;
+    width: 100%;
+    z-index: 300;
+}
+
+/* Title styling */
+#title {
+    font-family: "Teko Light";
+    color: #808080;
+    font-size: 2.5vw;
+    margin-bottom: 10px;
+}
+
+/* Bio text */
+#bio2 {
+    font-family: "Teko Light";
+    color: #808080;
+    font-size: 1.5vw;
+    line-height: 1.4;
+}
+
+#about {
+    position: absolute;
+    font-family: "Space Mono";
+    font-size: 2vw;
+    ;
+    color: #808080;
+    top: 55%;
+    left: 30vw;
+}
+
+#projects {
+    position: absolute;
+    font-family: "Space Mono";
+    font-size: 2vw;
+    color: #808080;
+    top: 55%;
+    left: 55vw;
+}
+
+#resume {
+    font-family: "Space Mono";
+    font-size: 1.2vw;
+    padding: 10px 20px;
+    color: #808080;
+    border: none;
+    cursor: pointer;
+}
+
+#content-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 85%;
+    margin-left: 5%;
+    gap: 4%;
+    flex-wrap: wrap;
+    /* Allow items to wrap on smaller screens */
+    flex-direction: column-reverse;
+    /* Stack the text and portrait below YouTube */
+}
+
+/* Portrait styling */
+#self-portrait {
+    max-width: 32%;
+    height: auto;
+    border-radius: 100px;
+}
+
+/* Button container on the right */
+#button-container {
+    max-width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    gap: 20px;
+}
+
+/* Add a wavy underline effect to buttons */
+button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    display: inline-flex;
+    cursor: pointer;
+    touch-action: manipulation;
+    white-space: nowrap;
+    transition: background-color 0.3s ease;
+    z-index: 300;
+}
+
+/* Set up the wavy underline effect */
+button::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #808080, transparent);
+    background-size: 10px 2px;
+    transition: transform 0.3s ease;
+    transform: scaleX(0);
+    transform-origin: bottom left;
+}
+
+button:hover::after {
+    transform: scaleX(1);
+}
+
+/* Button hover background */
+button:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* YouTube container styling */
+#youtube-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+/* Rotating circular frame - make it smaller */
+#rotating-circle {
+    width: 20vw;
+    height: 20vw;
+    /* Maintain the circle's proportions */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 5px solid pink;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    animation: rotateCircle 10s linear infinite;
+    overflow: hidden;
+    margin-right: 1%;
+}
+
+/* Make the YouTube logo fit inside the smaller circle */
+#youtube-logo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* Rotation animation */
+@keyframes rotateCircle {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+#container {
+    width: 90%;
+    max-width: 1200px;
+    text-align: center;
+    margin: 0 auto;
+    padding-top: 5vw;
+    position: relative;
+}
+
+.project-description {
+    font-family: 'Space Mono', sans-serif;
+    font-size: 1.2rem;
+    color: #808080;
+    margin-bottom: 10px;
+}
+
+#github-link {
+    font-family: 'Space Mono', sans-serif;
+    color: #808080;
+    font-size: 1.2rem;
+    text-align: center;
+    position: fixed;
+    left: 0;
+    bottom: 20px;
+    width: 100%;
+    z-index: 1000;
+    /* Make sure it's always above other content */
+}
+
+#github-link a {
+    color: #6e5494;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+#github-link a:hover {
+    color: #fff;
+}
+
+/* List of projects */
+ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 0;
+    margin-top: 80px;
+    /* Ensure space below intro */
+    margin-bottom: 50px;
+}
+
+li {
+    list-style: none;
+    width: 30%;
+    margin-bottom: 20px;
+}
+
+iframe {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+}
+
+.project-description {
+    font-family: 'Space Mono', sans-serif;
+    font-size: 1.2rem;
+    color: #808080;
+    margin-bottom: 10px;
+}
+
+/* Style for the numbered buttons */
+.btn.numbered {
+    font-family: 'Space Mono', sans-serif;
+    color: hotpink;
+    padding: 25px 50px;
+    font-size: 40px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: max-content;
+    height: 55px;
+    text-align: left;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 25px;
+    padding-left: 20px;
+}
+
+.btn.numbered:hover {
+    background-color: rgb(105, 74, 191, 0.2);
+}
+
+.number {
+    font-size: 20px;
+    /* Keep the numbers the same size as the text */
+    color: #D90166;
+    position: relative;
+    top: 5px;
+}
+
+/* Social media buttons container */
+.social-buttons {
+    font-family: "Space Mono";
+    position: absolute;
+    bottom: 13%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 25px;
+    display: flex;
+    gap: 25px;
+    z-index: 10;
+}
+
+/* GitHub Button */
+.github {
+    font-family: "Space Mono";
+    color: #6e5494;  /* GitHub's brand color */
+    border-radius: 50px;
+}
+
+.github:hover {
+    background-color: #6e5494;  /* Darker shade on hover */
+    color: #f5f5f5;
+    transform: scale(1.05);
+}
+
+/* LinkedIn Button */
+.linkedin {
+    font-family: "Space Mono";
+    color: #0077b5;  /* LinkedIn's brand blue */
+    border-radius: 50px;
+}
+
+.linkedin:hover {
+    background-color: #0077b5;  /* Darker shade of LinkedIn blue */
+    color: #e0e0e0;
+    transform: scale(1.05);
+}
+
+
+/* Slightly smaller buttons for GitHub and LinkedIn */
+.github {
+    font-size: 14px;
+}
+
+.linkedin {
+    font-size: 14px;
+}
+
+/* Adjust list of projects */
+@media (max-width: 768px) {
+    body {
+        background-size: cover;
+        background-position: center;
+    }
+
+    #menu-button{
+        width: 25px; /* Adjust size as needed */
+        height: 25px; /* Adjust size as needed */
+    }
+
+    #content-container {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+
+    #self-portrait {
+        max-width: 60%;
+    }
+
+    .project-description {
+        font-size: 0.7rem;
+        margin-bottom: 13px;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    li {
+        list-style: none;
+        width: 45%;
+        margin-bottom: 7px;
+    }
+
+    #github-link {
+        font-size: 0.9rem;
+        /* Smaller font size on smaller screens */
+        bottom: 10px;
+        /* Reduce the distance from the bottom */
+    }
+
+    #github-link a {
+        font-size: 1rem;
+        /* Adjust link font size */
+    }
+
+    iframe {
+        width: 100%;
+        height: 130px;
+    }
+
+    #container {
+        padding: 0.5%;
+        margin: 0.5%;
+    }
+
+    #button-container {
+        align-items: center;
+        max-width: 80%;
+        text-align: center;
+    }
+
+    #intro,
+    #bio {
+        left: 1vw;
+    }
+
+    /* Add more space between the last video and the GitHub link */
+    ul li:last-child {
+        margin-bottom: 100px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .button-container {
+        gap: 50px;
+    }
+
+    .social-buttons {
+        bottom: 10%;
+    }
+}

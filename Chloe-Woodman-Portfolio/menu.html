@@ -1,0 +1,83 @@
+<html lang="en">
+
+<style>
+    body {
+        background-image: url(resources/menuBG.gif);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        position: relative;
+    }
+
+    #title {
+        position: absolute;
+        top: 5%;
+        /* Keep it near the top */
+        left: 50%;
+        transform: translateX(-50%);
+        /* Center it horizontally */
+        text-align: center;
+        width: 100%;
+        /* Ensure full width for proper centering */
+    }
+
+    .button-container {
+        max-width: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+        gap: 30px;
+    }
+
+    @media (max-width: 768px) {
+        .button-container {
+            flex-direction: column;
+            /* Stack buttons vertically */
+            align-items: center;
+            /* Center align buttons */
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .btn.numbered {
+            width: 250px;
+            /* Adjust width to fit smaller screens */
+            justify-content: center;
+            /* Ensure buttons are centered */
+        }
+    }
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation Menu</title>
+    <link rel="stylesheet" href="/resources/style.css">
+    <script type="module" src="resources/js/menu.js"></script>
+</head>
+
+<body>
+    <canvas id="bg"></canvas>
+    <div id="bg-overlay"></div>
+    <div id="cursor">
+        <div id="inner"></div>
+    </div>
+    <div id="title">Chloe Woodman</div>
+    <div class="button-container">
+        <a href="index.html" class="btn numbered"><span class="number">01.</span> Home</a>
+        <a href="projects.html" class="btn numbered"><span class="number">02.</span> Projects</a>
+        <a href="about.html" class="btn numbered"><span class="number">03.</span> About</a>
+    </div>
+
+    <div class="social-buttons">
+        <a href="https://github.com/ChloeWoodman" class="social-btn github" target="_blank">GitHub</a>
+        <a href="https://www.linkedin.com/in/chloe-woodman-0a9a63245" class="social-btn linkedin"
+            target="_blank">LinkedIn</a>
+    </div>
+</body>
+
+</html>
